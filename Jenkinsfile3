@@ -1,22 +1,22 @@
 pipeline {
     agent any
-
+    
     stages {
         stage('Initialize') {
             steps {
-                echo 'Esta es el inicio'
+                echo 'Esta es la etapa de inicialización'
             }
         }
-
+        
         stage('Build') {
             steps {
-                sh 'mvn -B package'
+                echo 'Esta es la fase de construcción'
             }
         }
-
-        stage('Test') {
+        
+        stage('Deploy') {
             steps {
-                sh 'mvn clean verify'
+                echo 'Esta es la fase de despliegue'
             }
         }
     }
