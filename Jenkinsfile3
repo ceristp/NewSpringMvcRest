@@ -1,13 +1,7 @@
 pipeline {
     agent any
     
-    stages {
-        stage('Initialize') {
-            steps {
-                echo 'Esta es la etapa de inicialización'
-            }
-        }
-        
+    stages {      
         stage('Build') {
             steps {
                 echo 'Esta es la fase de construcción'
