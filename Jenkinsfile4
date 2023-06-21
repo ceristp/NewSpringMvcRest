@@ -17,9 +17,11 @@ pipeline {
                     sh '''$SCANNER_HOME/bin/sonar-scanner \
                     -Dsonar.projectKey=NewSpringMvcRest \
                     -Dsonar.projectName=Trabajo Grupal Modulo 3 \
-                    -Dsonar.sources=src/ \
+                    -Dsonar.sources=src/main,src/test \
                     -Dsonar.java.binaries=target/classes/ \
                     -Dsonar.exclusions=src/test/java/****/*.java \
+                    -Dsonar.exclusions=src/main/java/**/*.java \
+                    -Dsonar.exclusions=src/main/java/**/*.java,src/test/java/**/*.java \
                     -Dsonar.projectVersion=${BUILD_NUMBER}-${GIT_COMMIT_SHORT}'''
                     }
                 }
@@ -39,15 +41,15 @@ pipeline {
                                 nexusVersion: "nexus3",
                                 protocol: "http",
                                 nexusUrl: "localhost:8081",
-                                groupId: pom.groupId,
-                                version: pom.version,
+                                groupId: com.journaldev,
+                                version: 1.0,
                                 repository: "repositorioTGrupoM3",
                                 credentialsId: "nexuscredenciales",
                                 artifacts: [
-                                    [artifactId: pom.artifactId,
+                                    [artifactId: SpringRestExample,
                                     classifier: '',
-                                    file: artifactPath,
-                                    type: pom.packaging]
+                                    file: target/SpringRestExample-1.0.war,
+                                    type: '']
                                 ]
                             );
                         } else {
